@@ -1,0 +1,1 @@
+English_words = ["abandon", "ability", "able", "accident", "account", "adjust", "agent", "fabric", "face", "faculty", "fade", "faint", "faith", "laptop", "large", "later", "latin"]
