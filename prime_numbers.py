@@ -1,5 +1,5 @@
 import random
-import math
+import math, os
 import sys
 from gmpy2 import *
 
@@ -12,7 +12,7 @@ def rabinMiller(n):
          s = s//2
          t +=1
      k = 0
-     while k<110:
+     while k<128:
          a = random.randrange(2,n-1)
          #a^s is computationally infeasible.  we need a more intelligent approach
          #v = (a**s)%n
@@ -57,8 +57,8 @@ def generateLargePrime(k):
      #k is the desired bit length
      r=100*(math.log(k,2)+1) #number of attempts max
      r_ = r
-     Four_primes=0
-     while Four_primes<5:
+     Eight_primes=0
+     while Eight_primes<8:
         #randrange is mersenne twister and is completely deterministic
         #unusable for serious crypto purposes
          n = random.randrange(2**(k-1),2**(k))
@@ -66,12 +66,13 @@ def generateLargePrime(k):
          if isPrime(n) == True:
              list_of_primes.append(n)
 
-             Four_primes=Four_primes+1
-             print(n)
-     return "Failure after "+ str(r_) + " tries."
+             Eight_primes= Eight_primes+1
+             #print(n)
+     return list_of_primes
 
 #print(generateLargePrime(1024))
 
-print("cfcffre")
-print("#######")
-print(list_of_primes)
+
+def test_result_prime_numbers():
+    print(list_of_primes)
+
