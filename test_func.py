@@ -1,6 +1,8 @@
 import os, random
 from rsa_gen import gen_rsa_key
 from prime_numbers import generateLargePrime
+from english_bip39 import list_of_englishWords
+from phrase_to_hash import phrase_to_hash
 
 from NIST_tests.RunTest import RunTest
 
@@ -33,3 +35,11 @@ else:
 
 
 print("distance beetwen primes ", list_for_distance[0]-list_for_distance[1])
+
+Mnemo_phrase = []
+
+for i in range (0, 12):
+    Mnemo_phrase.append(random.choice(list_of_englishWords))
+
+print(Mnemo_phrase)
+print(phrase_to_hash(str(Mnemo_phrase)))
