@@ -9,6 +9,7 @@ seed_for_random = "frefrfrefreerfreerggrerggreerggreerggreerggreergvgfgfar34r32r
 random.seed(seed_for_random)
 Mnemo_phrase = []
 test_for_bigest_block_n_number = 0
+checks_rsa_key = 0
 
 for i in range (0, 12):
     Mnemo_phrase.append(random.choice(list_of_englishWords))
@@ -23,10 +24,12 @@ generated_primes = generateLargePrime(3072)
 print("######")
 print("list of primes  ", generated_primes)
 
-RSA_Private_KEY = gen_rsa_key(random.choice(generated_primes), random.choice(generated_primes))
-test_for_bigest_block_n_number = RSA_Private_KEY[2]
 
+i=0
 while checks_rsa_key != 2:
+    
+    RSA_Private_KEY = gen_rsa_key(generated_primes[i], generated_primes[i+1])
+
     test_for_bigest_block = "True" in str(RunTest.longest_one_block_test(bin(RSA_Private_KEY[2])[:1000000]))
     
     list_for_distance=[]
@@ -42,5 +45,8 @@ while checks_rsa_key != 2:
         test_distance_p_and_q = True
     else:
         test_distance_p_and_q = False
+    i=i+1
 
     checks_rsa_key = test_distance_p_and_q + test_for_bigest_block
+
+print(RSA_Private_KEY, checks_rsa_key)
