@@ -17,7 +17,7 @@ test_for_bigest_block_n_number = 0
 
 
 
-def create_SSH_keey():
+def create_SSH_key():
     checks_rsa_key = 0
     for i in range (0, 12):
         Mnemo_phrase.append(random.choice(list_of_englishWords))
