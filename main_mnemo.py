@@ -7,7 +7,7 @@ from NIST_tests.RunTest import RunTest
 
 
 seed_part1 = input("Input some random data ")
-seed_part2 = input("Please input more randomness")
+seed_part2 = input("Please input more randomness ")
 
 
 seed_for_random = seed_part1 + "  " + seed_part2 + "  " + str(os.urandom(129))
@@ -66,6 +66,8 @@ def create_SSH_key():
 
         checks_rsa_key = test_distance_p_and_q + test_for_bigest_block
 
+    print("  ")
+    print("###### RSA Priv key ")
     print(RSA_Private_KEY, checks_rsa_key)
 
 
@@ -117,7 +119,4 @@ def recover_SSH_key (input_MnemoPhrase):
     print(RSA_Private_KEY, checks_rsa_key)
 
 
-
-##create_SSH_keey()
-
-recover_SSH_key(input_MnemoPhrase=['extend', 'velvet', 'win', 'diet', 'fix', 'inspire', 'casino', 'stereo', 'trash', 'dinner', 'fish', 'bronze'])
+create_SSH_key()
