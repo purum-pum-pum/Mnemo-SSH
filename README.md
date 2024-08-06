@@ -4,9 +4,10 @@ this is test project, it could be not secure to use in production
 
 # About Code
 
-prime q - prime_q or just q
-prime p - prime_p or just p
-private exponent - exp_d or just d
+Some terms:
+- prime q - prime_q or just q
+- prime p - prime_p or just p
+- private exponent - exp_d or just d
 ### rsa_gen
 
 Here I generate rsa, from two primes
