@@ -31,3 +31,7 @@ These code make hash mnemo phrase and return hex formatted hash
 
 I use Scrypt as hashing algorithm with 128 byte lenth of output string
 
+
+
+### PS
+main project site - https://github.com/purum-pum-pum/Mnemo-SSH
