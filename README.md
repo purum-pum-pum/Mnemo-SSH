@@ -34,4 +34,4 @@ I use Scrypt as hashing algorithm with 128 byte lenth of output string
 
 
 ### PS
-main project site - https://github.com/purum-pum-pum/Mnemo-SSH
+main project site on Github - https://github.com/purum-pum-pum/Mnemo-SSH
