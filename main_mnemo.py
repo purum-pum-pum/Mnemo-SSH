@@ -6,6 +6,7 @@ from phrase_to_hash import phrase_to_hash
 from NIST_tests.RunTest import RunTest
 from cryptography.hazmat.primitives.asymmetric.rsa import rsa_crt_dmp1, rsa_crt_iqmp, rsa_crt_dmq1
 from cryptography.hazmat.primitives.asymmetric.rsa import RSAPrivateNumbers, RSAPublicNumbers
+from cryptography.hazmat.primitives import serialization
 
 
 seed_part1 = input("Input some random data ")
@@ -34,7 +35,7 @@ def create_SSH_key():
 
     random.seed(hash_Mnemo_phrase)
 
-    generated_primes = generateLargePrime(3072)
+    generated_primes = generateLargePrime(2048)
 
     print("your secret phrase  ###### ")
     print(Mnemo_phrase)
@@ -134,4 +135,4 @@ rsa_key1_num = RSAPrivateNumbers(p=priv_data[0], q=priv_data[1], d=priv_data[4],
 
 print(" ####  ")
 print("  ")
-print(rsa_key1_num)
+print(rsa_key1_num.private_key().private_bytes(encoding=serialization.Encoding.PEM, format=serialization.PrivateFormat.OpenSSH, encryption_algorithm=serialization.NoEncryption()))
