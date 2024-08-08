@@ -4,6 +4,8 @@ from rsa_gen import gen_rsa_key
 from english_bip39 import list_of_englishWords
 from phrase_to_hash import phrase_to_hash
 from NIST_tests.RunTest import RunTest
+from cryptography.hazmat.primitives.asymmetric.rsa import rsa_crt_dmp1, rsa_crt_iqmp, rsa_crt_dmq1
+from cryptography.hazmat.primitives.asymmetric.rsa import RSAPrivateNumbers, RSAPublicNumbers
 
 
 seed_part1 = input("Input some random data ")
@@ -69,6 +71,7 @@ def create_SSH_key():
     print("  ")
     print("###### RSA Priv key ")
     print(RSA_Private_KEY, checks_rsa_key)
+    return RSA_Private_KEY
 
 
 def recover_SSH_key (input_MnemoPhrase):
@@ -117,6 +120,18 @@ def recover_SSH_key (input_MnemoPhrase):
         checks_rsa_key = test_distance_p_and_q + test_for_bigest_block
 
     print(RSA_Private_KEY, checks_rsa_key)
+    return RSA_Private_KEY
 
 
-create_SSH_key()
+priv_data = create_SSH_key()
+
+print(type(priv_data))
+print(priv_data)
+
+
+rsa_key1_num = RSAPrivateNumbers(p=priv_data[0], q=priv_data[1], d=priv_data[4], dmp1=rsa_crt_dmp1(priv_data[4], priv_data[0]), dmq1=rsa_crt_dmq1(priv_data[4], priv_data[1]), iqmp=rsa_crt_iqmp(priv_data[0], priv_data[1]), public_numbers=RSAPublicNumbers(e=65537, n=priv_data[2]))
+
+
+print(" ####  ")
+print("  ")
+print(rsa_key1_num)
