@@ -123,16 +123,30 @@ def recover_SSH_key (input_MnemoPhrase):
     print(RSA_Private_KEY, checks_rsa_key)
     return RSA_Private_KEY
 
+def save_file(priv_data, file_destination):
+
+    rsa_key_numbers = RSAPrivateNumbers(p=priv_data[0], q=priv_data[1], d=priv_data[4], dmp1=rsa_crt_dmp1(priv_data[4], priv_data[0]), dmq1=rsa_crt_dmq1(priv_data[4], priv_data[1]), iqmp=rsa_crt_iqmp(priv_data[0], priv_data[1]), public_numbers=RSAPublicNumbers(e=65537, n=priv_data[2]))
+    
+    private_key_strings = rsa_key_numbers.private_key().private_bytes(encoding=serialization.Encoding.PEM, format=serialization.PrivateFormat.OpenSSH, encryption_algorithm=serialization.NoEncryption())
+    public_key_strings = rsa_key_numbers.private_key().public_key().public_bytes(encoding=serialization.Encoding.OpenSSH, format=serialization.PublicFormat.OpenSSH)
+    
+    print(private_key_strings)
+    print(public_key_strings)
+    return   
 
 priv_data = create_SSH_key()
 
 print(type(priv_data))
 print(priv_data)
 
+save_file(priv_data, "frerg")
+#rsa_key1_num = RSAPrivateNumbers(p=priv_data[0], q=priv_data[1], d=priv_data[4], dmp1=rsa_crt_dmp1(priv_data[4], priv_data[0]), dmq1=rsa_crt_dmq1(priv_data[4], priv_data[1]), iqmp=rsa_crt_iqmp(priv_data[0], priv_data[1]), public_numbers=RSAPublicNumbers(e=65537, n=priv_data[2]))
 
-rsa_key1_num = RSAPrivateNumbers(p=priv_data[0], q=priv_data[1], d=priv_data[4], dmp1=rsa_crt_dmp1(priv_data[4], priv_data[0]), dmq1=rsa_crt_dmq1(priv_data[4], priv_data[1]), iqmp=rsa_crt_iqmp(priv_data[0], priv_data[1]), public_numbers=RSAPublicNumbers(e=65537, n=priv_data[2]))
 
+#print(" ####  ")
+#print("  ")
+#print(rsa_key1_num.private_key().private_bytes(encoding=serialization.Encoding.PEM, format=serialization.PrivateFormat.OpenSSH, encryption_algorithm=serialization.NoEncryption()))
 
-print(" ####  ")
-print("  ")
-print(rsa_key1_num.private_key().private_bytes(encoding=serialization.Encoding.PEM, format=serialization.PrivateFormat.OpenSSH, encryption_algorithm=serialization.NoEncryption()))
+#print("#####")
+#with open('/home/andrew/test_key', 'wb') as pem_out:
+#        pem_out.write(rsa_key1_num.private_key().private_bytes(encoding=serialization.Encoding.PEM, format=serialization.PrivateFormat.OpenSSH, encryption_algorithm=serialization.NoEncryption()))
