@@ -89,7 +89,7 @@ def recover_SSH_key (input_MnemoPhrase):
 
     random.seed(hash_Mnemo_phrase)
 
-    generated_primes = generateLargePrime(3072)
+    generated_primes = generateLargePrime(2048)
 
     print("######")
     print("list of primes  ", generated_primes)
@@ -123,23 +123,32 @@ def recover_SSH_key (input_MnemoPhrase):
     print(RSA_Private_KEY, checks_rsa_key)
     return RSA_Private_KEY
 
-def save_file(priv_data, file_destination):
+def save_files(priv_data, file_destination):
+
+    FILE_LOCATION_SAVE = str(file_destination+"mnemo_key_1")
 
     rsa_key_numbers = RSAPrivateNumbers(p=priv_data[0], q=priv_data[1], d=priv_data[4], dmp1=rsa_crt_dmp1(priv_data[4], priv_data[0]), dmq1=rsa_crt_dmq1(priv_data[4], priv_data[1]), iqmp=rsa_crt_iqmp(priv_data[0], priv_data[1]), public_numbers=RSAPublicNumbers(e=65537, n=priv_data[2]))
     
     private_key_strings = rsa_key_numbers.private_key().private_bytes(encoding=serialization.Encoding.PEM, format=serialization.PrivateFormat.OpenSSH, encryption_algorithm=serialization.NoEncryption())
     public_key_strings = rsa_key_numbers.private_key().public_key().public_bytes(encoding=serialization.Encoding.OpenSSH, format=serialization.PublicFormat.OpenSSH)
     
+
+    with open(FILE_LOCATION_SAVE, 'wb') as pem_out:
+        pem_out.write(private_key_strings)
+    with open(str(FILE_LOCATION_SAVE+".pub"), 'wb') as pem_out:
+        pem_out.write(public_key_strings)
+
     print(private_key_strings)
     print(public_key_strings)
     return   
 
 priv_data = create_SSH_key()
 
-print(type(priv_data))
-print(priv_data)
+#print(type(priv_data))
+#print(priv_data)
 
-save_file(priv_data, "frerg")
+#priv_data = recover_SSH_key(input_MnemoPhrase=['bone', 'pitch', 'awesome', 'fashion', 'visual', 'diesel', 'tragic', 'flee', 'smart', 'stock', 'charge', 'couple'])
+save_files(priv_data, "/home/andrew/")
 #rsa_key1_num = RSAPrivateNumbers(p=priv_data[0], q=priv_data[1], d=priv_data[4], dmp1=rsa_crt_dmp1(priv_data[4], priv_data[0]), dmq1=rsa_crt_dmq1(priv_data[4], priv_data[1]), iqmp=rsa_crt_iqmp(priv_data[0], priv_data[1]), public_numbers=RSAPublicNumbers(e=65537, n=priv_data[2]))
 
 
