@@ -113,7 +113,7 @@ def recover_SSH_key (input_MnemoPhrase):
             list_for_distance.append(RSA_Private_KEY[1])
             list_for_distance.append(RSA_Private_KEY[0])
 
-        if list_for_distance[0]-list_for_distance[1] > 3351951982485649274893506249551461531869841455148098344430890360930441007518386744200468574541725856922507964546621512713438470702986642486608412251521024:
+        if list_for_distance[0]-list_for_distance[1] > 509258994083621521567111422102344540262867098416484062659035112338595324940834176545849344:
             test_distance_p_and_q = True
         else:
             test_distance_p_and_q = False
