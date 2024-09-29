@@ -2,7 +2,10 @@
 
 this is test project, it could be not secure to use in production
 
+
 # About Code
+## Dependencies
+On Arch/Manajro Linux I install these - python-scipy python-numpy python-gmpy2 python-cryptography
 
 Some terms:
 - prime q - prime_q or just q
